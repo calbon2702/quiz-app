@@ -1,7 +1,5 @@
 import requests
 
-# https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple
-
 class DataCollection:
     def __init__(self, q_diff=""):
         self.q_num = "10"
@@ -36,11 +34,15 @@ class DataCollection:
             print(f"{cat['id']}: {cat['name']}")
 
     def set_category_json(self):
-        cat_id = int(input(f"{self.get_category_list()}\n"))
+        cat_id = input(f"{self.get_category_list()}\n")
+
+        if cat_id == "":
+            return
+
         category_json = self.get_full_category_json()['trivia_categories']
 
         for cat in category_json:
-            if cat['id'] == cat_id:
+            if str(cat['id']) == cat_id:
                 self.q_category_json = cat
                 break
         
@@ -56,10 +58,15 @@ class DataCollection:
     def set_url(self):
         url = "https://opentdb.com/api.php?"
         url += f"amount={self.q_num}"
-        print(f"SELFNUM: {self.q_num}")
 
         if self.q_diff:
             url += f"&difficulty={self.q_diff}"
 
         if self.q_category_id:
             url += f"&category={self.q_category_id}"
+
+        self.q_url = url
+
+    def get_full_trivia_json(self):
+        questions_json = requests.get(self.q_url).json()
+        return questions_json
