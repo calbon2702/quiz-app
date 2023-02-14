@@ -1,19 +1,22 @@
 from question_model import Question
-from data import question_data
+from data import DataCollection
 from quiz_brain import QuizBrain
+import requests
 
-question_bank = []
+start_url = "https://opentdb.com/api.php?"
 
-for q in question_data:
-    q_text = q["question"]
-    q_answer = q["correct_answer"]
-    question = Question(q_text, q_answer)
-    question_bank.append(question)
+while True:
+    print("Start of Quiz\n")
+    num_questions = input("How many questions would you like? (Max 50)\n")
+    difficulty = input("Select difficulty of questions (easy/medium/hard or skip for any):\n")
 
-quiz = QuizBrain(question_bank)
+    data = DataCollection(num_questions, difficulty)
+    data.set_category_json(int(input(f"{data.get_category_list()}\n")))
 
-while quiz.still_has_questions():
-    quiz.next_question()
+    # quiz = QuizBrain(question_bank)
 
-print("You've completed the quiz!")
-print(f"Your final score is: {quiz.score}/{quiz.question_num}")
+    # while quiz.still_has_questions():
+    #     quiz.next_question()
+
+    # print("You've completed the quiz!")
+    # print(f"Your final score is: {quiz.score}/{quiz.question_num}")
