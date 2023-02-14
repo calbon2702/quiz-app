@@ -6,7 +6,7 @@ class Question:
         self.type = type
 
     def text_cleaner(self):
-        exclusions = ["&quot;"]
+        exclusions = ["&quot;", "&#039;"]
         for i in exclusions:
             if i in self.text:
                 self.text = self.text.replace(i, "")

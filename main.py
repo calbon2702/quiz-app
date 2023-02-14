@@ -31,4 +31,4 @@ while True:
         quiz.next_question()
 
     print("You've completed the quiz!")
-    print(f"Your final score is: {quiz.score}/{quiz.question_num}")
+    print(f"Your final score is: {quiz.score}/{quiz.question_num}\n")
