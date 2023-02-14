@@ -1,19 +1,34 @@
 from question_model import Question
-from data import question_data
+from data import DataCollection
 from quiz_brain import QuizBrain
 
-question_bank = []
+while True:
+    print("Start of Quiz\n")
 
-for q in question_data:
-    q_text = q["question"]
-    q_answer = q["correct_answer"]
-    question = Question(q_text, q_answer)
-    question_bank.append(question)
+    data = DataCollection()
+    data.set_num()
+    data.set_diff()
+    data.set_category_json()
+    data.set_url()
+    trivia_json = data.get_full_trivia_json()['results']
 
-quiz = QuizBrain(question_bank)
+    question_bank = []
 
-while quiz.still_has_questions():
-    quiz.next_question()
+    for i in trivia_json:
+        question_bank.append(Question(
+            i['question'],
+            i['correct_answer'],
+            i['incorrect_answers'],
+            i['type']
+        ))
 
-print("You've completed the quiz!")
-print(f"Your final score is: {quiz.score}/{quiz.question_num}")
+    for i in question_bank:
+        i.text_cleaner()
+
+    quiz = QuizBrain(question_bank)
+
+    while quiz.still_has_questions():
+        quiz.next_question()
+
+    print("You've completed the quiz!")
+    print(f"Your final score is: {quiz.score}/{quiz.question_num}\n")

@@ -11,7 +11,7 @@ class QuizBrain:
         current_question = self.question_lst[self.question_num]
         self.question_num += 1
         choice = input(f"Q.{self.question_num}: {current_question.text}\n")
-        self.check_answer(choice, current_question.answer)
+        self.check_answer(choice, current_question.correct_answer)
 
     def check_answer(self, choice, answer):
         if choice.lower() == answer.lower():
@@ -21,4 +21,4 @@ class QuizBrain:
             print("Incorrect answer!")
         
         print(f"The correct answer is {answer}")
-        print(f"Score: {self.score}/{self.question_num}")
+        print(f"Score: {self.score}/{self.question_num}\n")
