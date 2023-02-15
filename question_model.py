@@ -13,3 +13,6 @@ class Question:
 
             if i in self.correct_answer:
                 self.correct_answer = self.correct_answer.replace(i, "")
+            
+            if i in self.incorrect_answers:
+                self.incorrect_answers = self.incorrect_answers.replace(i, "")
