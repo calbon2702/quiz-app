@@ -10,3 +10,6 @@ class Question:
         for i in exclusions:
             if i in self.text:
                 self.text = self.text.replace(i, "")
+
+            if i in self.correct_answer:
+                self.correct_answer = self.correct_answer.replace(i, "")
