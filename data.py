@@ -1,6 +1,6 @@
 import requests
 
-class DataCollection:
+class DataCollector:
     def __init__(self, q_diff=""):
         self.q_num = "10"
         self.q_diff = ""

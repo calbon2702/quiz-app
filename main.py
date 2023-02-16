@@ -1,11 +1,11 @@
 from question_model import Question
-from data import DataCollection
+from data import DataCollector
 from quiz_brain import QuizBrain
 
 while True:
     print("Start of Quiz\n")
 
-    data = DataCollection()
+    data = DataCollector()
     data.set_num()
     data.set_diff()
     data.set_category_json()
