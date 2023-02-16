@@ -34,7 +34,8 @@ class DataCollector:
             print(f"{cat['id']}: {cat['name']}")
 
     def set_category_json(self):
-        cat_id = input(f"{self.get_category_list()}\n")
+        self.get_category_list()
+        cat_id = input()
 
         if cat_id == "":
             return
