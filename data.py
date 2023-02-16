@@ -1,6 +1,6 @@
 import requests
 
-class DataCollection:
+class DataCollector:
     def __init__(self, q_diff=""):
         self.q_num = "10"
         self.q_diff = ""
@@ -34,7 +34,8 @@ class DataCollection:
             print(f"{cat['id']}: {cat['name']}")
 
     def set_category_json(self):
-        cat_id = input(f"{self.get_category_list()}\n")
+        self.get_category_list()
+        cat_id = input()
 
         if cat_id == "":
             return
