@@ -1,6 +1,6 @@
 SYMBOLS = {
             "&quot;": "\"",
-            "&#039;": "", # Unsure what this is
+            "&#039;": "\'",
             "&ldquo;": "\"",
             "&rdquo;": "\"",
             "&rsquo;": "\'",
