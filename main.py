@@ -27,6 +27,10 @@ while True:
 
     quiz = QuizBrain(question_bank)
 
+    print("Lets begin the quiz.")
+    print("For the True/False questions, type true or false.")
+    print("For the multiple choice questions, type the option number or the option string.\n")
+
     while quiz.still_has_questions():
         quiz.next_question()
 
