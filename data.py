@@ -1,73 +1,102 @@
-import requests
-
-class DataCollector:
-    def __init__(self, q_diff=""):
-        self.q_num = "10"
-        self.q_diff = ""
-        self.q_category_json = {}
-        self.q_category_name = ""
-        self.q_category_id = ""
-        self.q_url = ""
-
-    def set_num(self):
-        num = input("How many questions would you like? (Max 50)\n")
-
-        if num == "":
-            self.q_num = "10"
-
-        else:
-            self.q_num = num
-    
-    def set_diff(self):
-        self.q_diff = input("Select difficulty of questions (easy/medium/hard or skip for any):\n")
-
-    def get_full_category_json(self):
-        category_json = requests.get("https://opentdb.com/api_category.php").json()
-        return category_json
-
-    def get_category_list(self):
-        category_json_list = self.get_full_category_json()['trivia_categories']
-        
-        print("Pick a category (enter ID or skip to pick any category):\n")
-
-        for cat in category_json_list:
-            print(f"{cat['id']}: {cat['name']}")
-
-    def set_category_json(self):
-        self.get_category_list()
-        cat_id = input()
-
-        if cat_id == "":
-            return
-
-        category_json = self.get_full_category_json()['trivia_categories']
-
-        for cat in category_json:
-            if str(cat['id']) == cat_id:
-                self.q_category_json = cat
-                break
-        
-        self.set_category_name(self.q_category_json['name'])
-        self.set_category_id(self.q_category_json['id'])
-
-    def set_category_name(self, name):
-        self.q_category_name = name
-
-    def set_category_id(self, id):
-        self.q_category_id = id
-
-    def set_url(self):
-        url = "https://opentdb.com/api.php?"
-        url += f"amount={self.q_num}"
-
-        if self.q_diff:
-            url += f"&difficulty={self.q_diff}"
-
-        if self.q_category_id:
-            url += f"&category={self.q_category_id}"
-
-        self.q_url = url
-
-    def get_full_trivia_json(self):
-        questions_json = requests.get(self.q_url).json()
-        return questions_json
+question_data = [
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "medium",
+        "question": "The HTML5 standard was published in 2014.",
+        "correct_answer": "True",
+        "incorrect_answers": [
+            "False"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "medium",
+        "question": "The first computer bug was formed by faulty wires.",
+        "correct_answer": "False",
+        "incorrect_answers": [
+            "True"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "medium",
+        "question": "FLAC stands for 'Free Lossless Audio Condenser'.",
+        "correct_answer": "False",
+        "incorrect_answers": [
+            "True"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "medium",
+        "question": "All program codes have to be compiled into an executable file in order to be run. This file can then be executed on any machine.",
+        "correct_answer": "False",
+        "incorrect_answers": [
+            "True"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "easy",
+        "question": "Linus Torvalds created Linux and Git.",
+        "correct_answer": "True",
+        "incorrect_answers": [
+            "False"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "easy",
+        "question": "The programming language 'Python' is based off a modified version of 'JavaScript'",
+        "correct_answer": "False",
+        "incorrect_answers": [
+            "True"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "medium",
+        "question": "AMD created the first consumer 64-bit processor.",
+        "correct_answer": "True",
+        "incorrect_answers": [
+            "False"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "easy",
+        "question": "'HTML' stands for Hypertext Markup Language.",
+        "correct_answer": "True",
+        "incorrect_answers": [
+            "False"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "easy",
+        "question": "In most programming languages, the operator ++ is equivalent to the statement '+= 1'.",
+        "correct_answer": "True",
+        "incorrect_answers": [
+            "False"
+        ]
+    },
+    {
+        "category": "Science: Computers",
+        "type": "boolean",
+        "difficulty": "hard",
+        "question": "The IBM PC used an Intel 8008 microprocessor clocked at 4.77 MHz and 8 kilobytes of memory.",
+        "correct_answer": "False",
+        "incorrect_answers": [
+            "True"
+        ]
+    }
+]
